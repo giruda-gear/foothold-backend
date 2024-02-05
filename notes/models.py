@@ -10,7 +10,7 @@ class Tag(models.Model):
 
 class Note(models.Model):
     title = models.CharField(max_length=255)
-    desc = models.TextField()
+    content = models.TextField()
     url = models.URLField(null=True)
     status = models.CharField(max_length=10, null=True)
     created = models.DateTimeField(auto_now_add=True)
