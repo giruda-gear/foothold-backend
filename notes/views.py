@@ -1,9 +1,7 @@
-from rest_framework import generics, serializers
+from rest_framework import generics
 
 from notes.serializers import NoteDetailSerializer, NoteSerializer, TagSerializer
 from notes.models import Note, Tag
-from rest_framework.response import Response
-from rest_framework import status
 
 
 class TagListAPIView(generics.ListAPIView):
@@ -17,7 +15,7 @@ class NoteDetailAPIView(generics.RetrieveAPIView):
 
 
 class NoteListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Note.objects.all()
+    queryset = Note.objects.prefetch_related("tags")
 
     def get_serializer_class(self):
         if self.request.method == "GET":
